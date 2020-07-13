@@ -1,0 +1,101 @@
+<div class="row login-card">
+  <section class="card-area position-relative">
+    <div class="animate__animated animate__fadeIn">
+      <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+      <mat-card class="">
+        <div class="row">
+          <div class="col-12">
+            <div class="d-flex justify-content-center">
+              <i class="fa fa-user user-logo"></i>
+            </div>
+          </div>
+          <div class="col-12">
+            <hr />
+          </div>
+        </div>
+
+        <div class="row">
+          <form
+            [formGroup]="loginForm"
+            style="width: 100%;"
+            (ngSubmit)="send()"
+          >
+            <div class="col-12">
+              <mat-form-field
+                appearance="outline"
+                autocomplete="off"
+                style="width: 100%;"
+              >
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  placeholder="ex:example@gmail.com"
+                  formControlName="email"
+                />
+                <mat-icon class="set-icon" matSuffix>email</mat-icon>
+                <mat-error *ngIf="loginForm.get('email').invalid">{{
+                  getErrorMessage("email")
+                }}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field
+                appearance="outline"
+                autocomplete="off"
+                style="width: 100%;"
+              >
+                <mat-label>Password</mat-label>
+                <input
+                  type="password"
+                  matInput
+                  placeholder="Password"
+                  formControlName="password"
+                />
+                <mat-icon class="set-icon" matSuffix>lock</mat-icon>
+                <mat-error *ngIf="loginForm.get('password').invalid">{{
+                  getErrorMessage("password")
+                }}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12 d-flex ml-1">
+              <mat-checkbox>Remember me</mat-checkbox>
+              <div
+                class="d-flex"
+                style="
+                  margin-top: 0.1em;
+                  justify-content: flex-end;
+                  width: 100%;
+                  margin-right: 0.5em;
+                "
+              >
+                <a href="#">forgot password?</a>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <button
+              (click)="send()"
+              mat-raised-button
+              [disabled]="
+                this.loginForm.get('email').hasError('required') ||
+                this.loginForm.get('email').hasError('email') ||
+                this.loginForm.get('password').hasError('required')
+                  ? true
+                  : false
+              "
+              color="primary"
+              style="width: 100%;"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12"></div>
+        </div>
+      </mat-card>
+    </div>
+  </section>
+</div>

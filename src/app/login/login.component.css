@@ -1,0 +1,21 @@
+.card-area {
+  position: absolute;
+  max-width: 30vw;
+  min-width: 30vw;
+  margin: auto;
+}
+.user-logo {
+  font-size: 4em;
+  color: #0099cc;
+}
+
+.login-card {
+  margin-top: 30vh;
+}
+.set-icon {
+  opacity: 0.4;
+}
+mat-form-field:hover {
+  outline: none !important;
+  border: 0 !important;
+}
