@@ -1,23 +1,24 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-
-import { Router, RoutesRecognized } from '@angular/router';
-import { filter, pairwise, mergeMap, delay, map } from 'rxjs/operators';
-import { AuthService } from '../auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnInit } from '@angular/core';
 import {
-  FormGroup,
-  FormBuilder,
   FormControl,
   Validators,
+  FormBuilder,
+  FormGroup,
 } from '@angular/forms';
+import { map } from 'rxjs/internal/operators/map';
+import { Router, RoutesRecognized } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { filter } from 'rxjs/internal/operators/filter';
 import { of } from 'rxjs/internal/observable/of';
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.css'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
-  loginForm: FormGroup;
+export class SignUpComponent implements OnInit {
+  signForm: FormGroup;
   loading: boolean = false;
 
   constructor(
@@ -49,14 +50,19 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required),
+    this.signForm = this.formBuilder.group({
+      companyName: new FormControl('', [Validators.required]),
+      websiteUrl: new FormControl('', Validators.required),
+      address: this.formBuilder.group({
+        city: new FormControl('', Validators.required),
+        state: new FormControl('', Validators.required),
+        Address: new FormControl('', Validators.required),
+      }),
     });
   }
 
   getErrorMessage(type: string) {
-    let control = this.loginForm.get(type);
+    let control = this.signForm.get(type);
     if (control.hasError('required')) {
       return 'Please enter ' + type + '.';
     }
@@ -75,13 +81,15 @@ export class LoginComponent implements OnInit, OnDestroy {
       .pipe(
         map((elem) => {
           this.authService.isLoggedIn = true;
-        }),
-        delay(3000)
+        })
       )
       .subscribe((data) => {
         this.loading = false;
         this.router.navigate(['postjobs']);
       });
+  }
+  gotToSignUp() {
+    this.router.navigate(['/signup']);
   }
   ngOnViewInit() {}
   ngOnDestroy() {}

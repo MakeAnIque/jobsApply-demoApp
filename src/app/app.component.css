@@ -1,6 +1,7 @@
 .full-set {
   position: absolute;
   background: #33b5e5;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   width: 100%;
 }
