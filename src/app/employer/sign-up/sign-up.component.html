@@ -160,6 +160,7 @@
                 </div>
                 <div class="col-12 mt-2">
                   <button
+                    type="button"
                     mat-raised-button
                     color="primary"
                     (click)="companyLogo.click()"
@@ -248,21 +249,23 @@
                 </div>
               </div>
             </div>
+            <div class="col-12">
+              <div class="row mt-3">
+                <div class="col-12">
+                  <button
+                    (click)="send()"
+                    mat-raised-button
+                    color="primary"
+                    style="width: 100%;"
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
 
-        <div class="row mt-3">
-          <div class="col-12">
-            <button
-              (click)="send()"
-              mat-raised-button
-              color="primary"
-              style="width: 100%;"
-            >
-              Sign Up
-            </button>
-          </div>
-        </div>
         <div class="row">
           <div class="col-12"></div>
         </div>
