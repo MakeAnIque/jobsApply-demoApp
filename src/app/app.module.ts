@@ -56,6 +56,8 @@ import { PostedCardTemplateComponent } from './posted-card-template/posted-card-
 import { SignUpComponent } from './employer/sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { ViewJobComponent } from './view-job/view-job.component';
+import { HeaderComponent } from './sharedComponent/header/header.component';
+import { FooterComponent } from './sharedComponent/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +67,8 @@ import { ViewJobComponent } from './view-job/view-job.component';
     SignUpComponent,
     HomeComponent,
     ViewJobComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     FormsModule,

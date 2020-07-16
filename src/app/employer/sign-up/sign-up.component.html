@@ -86,15 +86,18 @@
                       matInput
                       formControlName="password"
                     />
-                    <!-- <button
+                    <button
+                      type="button"
                       mat-icon-button
                       matSuffix
                       (click)="hide = !hide"
                       [attr.aria-label]="'Hide password'"
                       [attr.aria-pressed]="hide"
-                    > -->
-                    <mat-icon class="set-icon" matSuffix>lock</mat-icon>
-                    <!-- </button> -->
+                    >
+                      <mat-icon>{{
+                        hide ? "visibility_off" : "visibility"
+                      }}</mat-icon>
+                    </button>
 
                     <!-- <mat-error *ngIf="signForm.get('password').invalid">{{
                   getErrorMessage("password")
@@ -114,15 +117,18 @@
                       placeholder="Confirm Password"
                       formControlName="confirmPassword"
                     />
-                    <!-- <button
+                    <button
+                      type="button"
                       mat-icon-button
                       matSuffix
                       (click)="cnfHide = !cnfHide"
                       [attr.aria-label]="'cnfHide confirmPassword'"
                       [attr.aria-pressed]="cnfHide"
-                    > -->
-                    <mat-icon class="set-icon" matSuffix>lock</mat-icon>
-                    <!-- </button> -->
+                    >
+                      <mat-icon>{{
+                        cnfHide ? "visibility_off" : "visibility"
+                      }}</mat-icon>
+                    </button>
 
                     <!-- <mat-error *ngIf="signForm.get('password').invalid">{{
                   getErrorMessage("password")
