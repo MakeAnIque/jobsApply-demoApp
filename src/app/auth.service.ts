@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 
-import { of } from 'rxjs/internal/observable/of';
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
@@ -11,7 +10,7 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn: boolean = true;
+  isLoggedIn: boolean = false;
   tryingUrl;
   constructor(private router: Router) {}
   canActivate(

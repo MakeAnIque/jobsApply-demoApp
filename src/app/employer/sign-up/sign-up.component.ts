@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {
   FormControl,
   Validators,
@@ -10,7 +10,8 @@ import { Router, RoutesRecognized } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { filter } from 'rxjs/internal/operators/filter';
-import { of } from 'rxjs/internal/observable/of';
+
+import { SignUpService } from './signup.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,14 +19,24 @@ import { of } from 'rxjs/internal/observable/of';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
+  hide = true;
+  cnfHide = true;
   signForm: FormGroup;
   loading: boolean = false;
-
+  ImageInfo = {
+    Name: '',
+    ImageSize: '',
+    ModifiedDate: '',
+    type: '',
+  };
+  @ViewChild('companyLogo', { static: false }) file: ElementRef;
+  @ViewChild('showImage', { static: false }) companyLogo: ElementRef;
   constructor(
     private router: Router,
     private authService: AuthService,
     private snackBar: MatSnackBar,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private signUpService: SignUpService
   ) {
     /**
      * show pop for when user trying to visit postjobs without login
@@ -51,46 +62,82 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     this.signForm = this.formBuilder.group({
-      companyName: new FormControl('', [Validators.required]),
-      websiteUrl: new FormControl('', Validators.required),
-      address: this.formBuilder.group({
-        city: new FormControl('', Validators.required),
-        state: new FormControl('', Validators.required),
-        Address: new FormControl('', Validators.required),
-      }),
+      companyName: new FormControl('', Validators.required),
+      websiteUrl: new FormControl('', [
+        Validators.required,
+        this.signUpService.urlValidator.bind(this),
+      ]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
+        Validators.required,
+        this.signUpService.passwordMatch.bind(this),
+      ]),
+      confirmPassword: new FormControl('', [Validators.required]),
+
+      city: new FormControl('', Validators.required),
+      state: new FormControl('', Validators.required),
+      fullAddress: new FormControl('', Validators.required),
+
+      companyDescription: new FormControl('', Validators.required),
+      incorporated: new FormControl('', Validators.required),
+      employeeStrength: new FormControl('', Validators.required),
+      fundingAmount: new FormControl(''),
     });
   }
 
   getErrorMessage(type: string) {
     let control = this.signForm.get(type);
+
+    console.log(control);
+
     if (control.hasError('required')) {
-      return 'Please enter ' + type + '.';
+      return 'Please enter url';
     }
-    if (control.hasError('email')) {
-      return 'Please enter Valid Email';
+    if (control.hasError('urlIsInvalid')) {
+      return 'Please enter Valid Url';
     } else {
       return '';
     }
   }
+  async imageChanged() {
+    try {
+      const fileRef = this.file.nativeElement.files[0];
+      const fileObj = await this.signUpService.readImage(fileRef);
+      this.companyLogo.nativeElement.src = fileObj;
+      console.log(this.file.nativeElement.files[0]);
+      this.ImageInfo = {
+        Name: fileRef.name,
+        ImageSize: fileRef.size,
+        ModifiedDate: fileRef.lastModifiedDate,
+        type: fileRef.type,
+      };
+    } catch (err) {
+      throw err;
+    }
+  }
 
   send() {
-    this.loading = true;
-    const source = of('d');
-
-    source
-      .pipe(
-        map((elem) => {
-          this.authService.isLoggedIn = true;
-        })
-      )
-      .subscribe((data) => {
-        this.loading = false;
-        this.router.navigate(['postjobs']);
+    if (!this.signForm.valid) {
+      this.snackBar.open('Please Fill Required Feilds', 'close', {
+        duration: 3000,
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
       });
+      return;
+    }
+    if (
+      this.signForm.get('password').value !==
+      this.signForm.get('confirmPassword').value
+    ) {
+      this.snackBar.open('Password Not Matched', 'close', {
+        duration: 3000,
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
+      });
+      return;
+    }
   }
-  gotToSignUp() {
-    this.router.navigate(['/signup']);
-  }
+
   ngOnViewInit() {}
   ngOnDestroy() {}
 }
