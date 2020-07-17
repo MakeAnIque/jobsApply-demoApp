@@ -5,6 +5,7 @@ import { PostJobsComponent } from './employer/post-jobs/post-jobs.component';
 import { AuthService } from './auth.service';
 import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './employer/sign-up/sign-up.component';
+import { ViewJobComponent } from './view-job/view-job.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -22,6 +23,10 @@ const routes: Routes = [
     path: 'postjobs',
     component: PostJobsComponent,
     canActivate: [AuthService],
+  },
+  {
+    path: 'viewjobs',
+    component: ViewJobComponent,
   },
   {
     path: '**',

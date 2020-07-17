@@ -10,7 +10,7 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn: boolean = false;
+  isLoggedIn: boolean = true;
   tryingUrl;
   constructor(private router: Router) {}
   canActivate(
