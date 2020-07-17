@@ -1,6 +1,6 @@
 <div class="row my-5">
   <div class="col-12 mt-5">
-    <form class="container">
+    <form class="container w-50 m-auto bg-light p-4 rounded">
       <div class="form-group row justify-content-between">
         <input
           type="text"
@@ -40,12 +40,41 @@
           placeholder="protractor summary"
         ></textarea>
       </div>
-      <div class="form-group row">
+      <!-- <div class="form-group row">
         <input
           type="file"
           class="form-control-file"
           placeholder="Choose a file"
         />
+      </div> -->
+      <!-- <div class="customo-file row">
+        <input
+          type="file"
+          class="custom-file-input"
+          placeholder="Choose a file"
+          id="Chooseafile"
+        />
+        <label for="Chooseafile" class="custom-input-label"
+          >Choose a file</label
+        >
+      </div> -->
+      <div class="input-group row w-50 mb-3">
+        <!-- <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01"
+            >Upload</span
+          >
+        </div> -->
+        <div class="custom-file">
+          <input
+            type="file"
+            class="custom-file-input"
+            id="inputGroupFile01"
+            aria-describedby="inputGroupFileAddon01"
+          />
+          <label class="custom-file-label" for="inputGroupFile01"
+            >Choose file</label
+          >
+        </div>
       </div>
       <div class="form-group row">
         <button class="btn btn-secondary" type="submit">Apply</button>
