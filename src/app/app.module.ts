@@ -58,6 +58,7 @@ import { HomeComponent } from './home/home.component';
 import { ViewJobComponent } from './view-job/view-job.component';
 import { HeaderComponent } from './sharedComponent/header/header.component';
 import { FooterComponent } from './sharedComponent/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,7 @@ import { FooterComponent } from './sharedComponent/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
-
+    HttpClientModule,
     A11yModule,
     ClipboardModule,
     CdkStepperModule,

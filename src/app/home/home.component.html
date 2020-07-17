@@ -1,4 +1,8 @@
-<div class="container" style="margin-top: 6em; margin-bottom: 5em;">
+<app-header></app-header>
+<div
+  class="container animate__animated animate__fadeIn"
+  style="margin-top: 6em; margin-bottom: 5em;"
+>
   <!-- <div class="card">
     <div class="card-body">
       <h4 class="card-title">Post job list</h4>
@@ -130,7 +134,14 @@
                 </div>
                 <div class="row">
                   <div class="col-12 d-flex" style="justify-content: flex-end;">
-                    <button mat-raised-button color="primary">Apply Now</button>
+                    <!-- view and apply pass id of jobs id -->
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      (click)="viewAndApply()"
+                    >
+                      Apply Now
+                    </button>
                   </div>
                 </div>
               </div>

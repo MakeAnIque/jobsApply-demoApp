@@ -5,8 +5,25 @@
         <a href="#" class="nav-link pl-0">StartupJob.in</a>
       </div>
       <div>
-        <button mat-raised-button color="primary" class="mr-2">Post Job</button>
-        <button mat-raised-button color="warn">Want Job</button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="gotoPostJob()"
+          class="mr-2"
+        >
+          Post Job
+        </button>
+        <button mat-raised-button (click)="gotoJobList()" color="warn">
+          Want Job
+        </button>
+        <button
+          mat-raised-button
+          style="margin-left: 4em;"
+          (click)="logout()"
+          color="primary"
+        >
+          {{ loginCheck }}
+        </button>
       </div>
     </nav>
   </header>
