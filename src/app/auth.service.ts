@@ -10,7 +10,7 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn: boolean = true;
+  isLoggedIn: boolean = false;
   tryingUrl;
   constructor(private router: Router) {}
   canActivate(
@@ -18,9 +18,13 @@ export class AuthService {
     state: RouterStateSnapshot
   ): boolean {
     let url: string = state.url;
-    console.log('inner', url);
+
     this.tryingUrl = new Observable((subscriber) => {
-      subscriber.next(url);
+      if (url === '/postjobs') {
+        subscriber.next(url);
+      } else {
+        subscriber.next('/_');
+      }
     });
     return this.checkLogin(url);
   }
@@ -52,4 +56,6 @@ export class AuthService {
     this.router.navigate(['/login']);
     return false;
   }
+
+  demoTest: any;
 }

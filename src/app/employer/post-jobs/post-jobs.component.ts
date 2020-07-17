@@ -7,6 +7,7 @@ import {
   FormGroup,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-post-jobs',
@@ -21,7 +22,8 @@ export class PostJobsComponent implements OnInit {
     private router: Router,
 
     private snackBar: MatSnackBar,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {
     /**
      * show pop for when user trying to visit postjobs without login
@@ -29,6 +31,7 @@ export class PostJobsComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.authService.demoTest);
     this.postForm = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),

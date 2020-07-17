@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { filter } from 'rxjs/internal/operators/filter';
 
 import { SignUpService } from './signup.service';
-
+import { AllApiRoutesService } from '../../all-api-routes.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -36,28 +36,29 @@ export class SignUpComponent implements OnInit {
     private authService: AuthService,
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
-    private signUpService: SignUpService
+    private signUpService: SignUpService,
+    private apiRoute: AllApiRoutesService
   ) {
     /**
      * show pop for when user trying to visit postjobs without login
      */
-    const subsLoginRoute = this.router.events
-      .pipe(filter((evt: any) => evt))
-      .subscribe((events: RoutesRecognized[]) => {
-        if (this.authService.tryingUrl != undefined) {
-          this.authService.tryingUrl
-            .pipe(map((elem: string) => elem.split('/')[1]))
-            .subscribe(() => {
-              if (!this.authService.isLoggedIn) {
-                this.snackBar.open('Please Login First.', 'close', {
-                  duration: 5000,
-                });
-              }
-
-              subsLoginRoute.unsubscribe();
-            });
-        }
-      });
+    // const subsLoginRoute = this.router.events
+    //   .pipe(filter((evt: any) => evt))
+    //   .subscribe((events: RoutesRecognized[]) => {
+    //     if (this.authService.tryingUrl !== undefined) {
+    //       this.authService.tryingUrl
+    //         .pipe(map((elem: string) => elem.split('/')[1]))
+    //         .subscribe(() => {
+    //           if (!this.authService.isLoggedIn) {
+    //             this.snackBar.open('Please Login First.', 'close', {
+    //               duration: 5000,
+    //             });
+    //           }
+    //           this.authService.tryingUrl = undefined;
+    //           subsLoginRoute.unsubscribe();
+    //         });
+    //     }
+    //   });
   }
 
   ngOnInit() {
@@ -76,6 +77,8 @@ export class SignUpComponent implements OnInit {
 
       city: new FormControl('', Validators.required),
       state: new FormControl('', Validators.required),
+      country: new FormControl('', Validators.required),
+      pincode: new FormControl('', Validators.required),
       fullAddress: new FormControl('', Validators.required),
 
       companyDescription: new FormControl('', Validators.required),
@@ -136,8 +139,54 @@ export class SignUpComponent implements OnInit {
       });
       return;
     }
-  }
 
+    const {
+      companyName,
+      email,
+      password,
+      websiteUrl,
+      companyDescription,
+      employeeStrength,
+      fundingAmount,
+      incorporated,
+    } = this.signForm.value;
+
+    this.apiRoute
+      .employerSignup({
+        EMPID: 0,
+        EMPLOYERMAILID: email,
+        EMPLOYERPASSWORD: password,
+        EMPLOYERNAME: companyName,
+        EMPLOYERURL: websiteUrl,
+        EMPLOYERADDRESS: this.combineAddress(this.signForm),
+        EMPLOYERLOGOFILE: '/uplad/my.jpg',
+        EMPLOYERDESCRIPTION: companyDescription,
+        EMPLOYERSTRENGTH: employeeStrength,
+        EMPLOYERYEARINC: incorporated,
+        EMPLOYERFUNDS: fundingAmount,
+      })
+      .subscribe((signData: { message: string; registration: string }) => {
+        if (signData.registration) {
+          this.snackBar.open('Registration Done, By ' + companyName, 'close', {
+            duration: 3000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+          });
+          this.router.navigate(['/login']);
+        } else {
+          this.snackBar.open(email + ' Already Registered.', 'close', {
+            duration: 3000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+          });
+        }
+      });
+  }
+  combineAddress(data: FormGroup): string {
+    const { address, city, state, pincode, country } = this.signForm.value;
+
+    return `${address}, ${pincode}, ${city}, ${state}, ${country}`;
+  }
   ngOnViewInit() {}
   ngOnDestroy() {}
 }
