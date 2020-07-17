@@ -2,7 +2,103 @@
   <section class="card-area position-relative">
     <div class="animate__animated animate__fadeIn">
       <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-      <mat-card class="col-12 box-ratio"> </mat-card>
+      <mat-card class="col-12">
+        <div class="container m-auto py-4">
+          <span class="size">Post job</span>
+          <hr />
+          <form>
+            <span class="size">Job types:</span>
+            <div class="form-check mt-2">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="fulltimecheck"
+              />
+              <label for="fulltimecheck" class="form-check-label"
+                >Full time</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="parttimecheck"
+              />
+              <label for="parttimecheck" class="form-check-label"
+                >Part time</label
+              >
+            </div>
+            <div class="form-group my-3">
+              <label for="skillformrequir" class="size">Skill required</label>
+              <input
+                type="text"
+                class="form-control"
+                id="skillformrequir"
+                placeholder="Html, Js, Node, Database..."
+              />
+            </div>
+            <div class="form-group">
+              <label for="textdiscription" class="size">Job discription</label>
+              <textarea
+                name=""
+                id="textdiscription"
+                cols="3"
+                class="form-control"
+              ></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-4">
+                <label for="expectsalaryform" class="size"
+                  >Expected Salary</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="expectedsalaryform"
+                />
+              </div>
+              <div class="form-group col-2">
+                <label for="klformdrop" class="size">K / L</label>
+                <select name="" id="klformdrop" class="form-control">
+                  <option selected>K</option>
+                  <option value="l">L</option>
+                </select>
+              </div>
+              <div class="form-group col-2">
+                <label for="monthyearform" class="size">m / y</label>
+                <select name="" id="monthyearform" class="form-control">
+                  <option selected>per month</option>
+                  <option value="year">per year</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-3">
+                <label for="expreienceform" class="size">Experience</label>
+                <input type="number" class="form-control" placeholder="2 - 3" />
+              </div>
+              <div class="form-group col-2">
+                <label for="monthyearform" class="size">m / y</label>
+                <select name="" id="monthyearform" class="form-control">
+                  <option selected> month</option>
+                  <option value="year"> year</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Apply job</button>
+          </form>
+        </div>
+        <!-- <div class="input-group">
+          <div>
+            <span>Job type:</span>
+          </div>
+          <div class="custom-check">
+            <div class="">
+              <input type="checkbox" class="custom-input-check">
+            </div>
+          </div>
+        </div> -->
+      </mat-card>
     </div>
   </section>
 </div>
