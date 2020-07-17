@@ -1,4 +1,4 @@
-<div class="row login-card">
+<div class="login-card">
   <section class="card-area position-relative">
     <div class="animate__animated animate__fadeIn">
       <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
@@ -71,27 +71,40 @@
                 <a href="#">forgot password?</a>
               </div>
             </div>
+            <div class="col-12">
+              <div class="row mt-3">
+                <div class="col-6">
+                  <button
+                    (click)="send()"
+                    mat-raised-button
+                    [disabled]="
+                      this.loginForm.get('email').hasError('required') ||
+                      this.loginForm.get('email').hasError('email') ||
+                      this.loginForm.get('password').hasError('required')
+                        ? true
+                        : false
+                    "
+                    color="primary"
+                    style="width: 100%;"
+                  >
+                    Login
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button
+                    (click)="gotToSignUp()"
+                    mat-raised-button
+                    color="primary"
+                    style="width: 100%;"
+                  >
+                    Register
+                  </button>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
-        <div class="row mt-3">
-          <div class="col-12">
-            <button
-              (click)="send()"
-              mat-raised-button
-              [disabled]="
-                this.loginForm.get('email').hasError('required') ||
-                this.loginForm.get('email').hasError('email') ||
-                this.loginForm.get('password').hasError('required')
-                  ? true
-                  : false
-              "
-              color="primary"
-              style="width: 100%;"
-            >
-              Login
-            </button>
-          </div>
-        </div>
+
         <div class="row">
           <div class="col-12"></div>
         </div>

@@ -1,0 +1,29 @@
+.container {
+}
+.col-3 h2 {
+  margin-bottom: 3rem;
+}
+.list-group-item {
+  background-color: transparent;
+  border: none;
+  color: white;
+  list-style: none;
+  margin: 0px;
+}
+
+.bg-dark {
+  background-color: black;
+}
+h2,
+i,
+p,
+span {
+  color: white;
+}
+.size {
+  font-size: 2rem;
+  color: white;
+}
+.f-color {
+  background: #2e2e2e;
+}

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 
 import { Router, RoutesRecognized } from '@angular/router';
 import { filter, pairwise, mergeMap, delay, map } from 'rxjs/operators';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   FormGroup,
@@ -82,6 +82,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.loading = false;
         this.router.navigate(['postjobs']);
       });
+  }
+  gotToSignUp() {
+    this.router.navigate(['/signup']);
   }
   ngOnViewInit() {}
   ngOnDestroy() {}

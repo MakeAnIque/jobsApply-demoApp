@@ -49,12 +49,27 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { LoginComponent } from './login/login.component';
-import { PostJobsComponent } from './post-jobs/post-jobs.component';
+import { LoginComponent } from './employer/login/login.component';
+import { PostJobsComponent } from './employer/post-jobs/post-jobs.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostedCardTemplateComponent } from './posted-card-template/posted-card-template.component';
+import { SignUpComponent } from './employer/sign-up/sign-up.component';
+import { HomeComponent } from './home/home.component';
+import { ViewJobComponent } from './view-job/view-job.component';
+import { HeaderComponent } from './sharedComponent/header/header.component';
+import { FooterComponent } from './sharedComponent/footer/footer.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, PostJobsComponent, PostedCardTemplateComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    PostJobsComponent,
+    PostedCardTemplateComponent,
+    SignUpComponent,
+    HomeComponent,
+    ViewJobComponent,
+    HeaderComponent,
+    FooterComponent,
+  ],
   imports: [
     FormsModule,
     ReactiveFormsModule,

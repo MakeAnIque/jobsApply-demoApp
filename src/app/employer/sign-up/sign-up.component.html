@@ -1,0 +1,423 @@
+<div class="login-card">
+  <section class="card-area position-relative">
+    <div class="animate__animated animate__fadeIn">
+      <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+      <mat-card class="">
+        <div class="row">
+          <div class="col-12">
+            <div class="d-flex justify-content-center">
+              <i class="fa fa-user user-logo"></i>
+            </div>
+          </div>
+          <div class="col-12">
+            <hr />
+          </div>
+        </div>
+
+        <div class="row">
+          <form [formGroup]="signForm" style="width: 100%;" (ngSubmit)="send()">
+            <div class="col-12">
+              <mat-form-field
+                appearance="outline"
+                autocomplete="off"
+                style="width: 100%;"
+              >
+                <mat-label>Company Name</mat-label>
+                <input
+                  matInput
+                  autofocus
+                  placeholder="Ex:Startupjobs, JobsApply"
+                  formControlName="companyName"
+                />
+                <mat-icon class="set-icon" matSuffix>account_balance</mat-icon>
+                <mat-error *ngIf="signForm.get('companyName').invalid"
+                  >Please fill Company Name</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field
+                appearance="outline"
+                autocomplete="off"
+                style="width: 100%;"
+              >
+                <mat-label>Website URL</mat-label>
+                <input
+                  matInput
+                  placeholder="websiteurl"
+                  formControlName="websiteUrl"
+                />
+                <mat-icon class="set-icon" matSuffix>link</mat-icon>
+                <!-- <mat-error *ngIf="signForm.get('password').invalid">{{
+                  getErrorMessage("password")
+                }}</mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <div class="col-12">
+                  <mat-form-field
+                    appearance="outline"
+                    autocomplete="off"
+                    style="width: 100%;"
+                  >
+                    <mat-label>Email Address</mat-label>
+                    <input
+                      matInput
+                      placeholder="Email"
+                      formControlName="email"
+                    />
+                    <mat-icon class="set-icon" matSuffix
+                      >alternate_email</mat-icon
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <mat-form-field
+                    appearance="outline"
+                    autocomplete="off"
+                    style="width: 100%;"
+                  >
+                    <mat-label>Password</mat-label>
+                    <input
+                      [type]="hide ? 'password' : 'text'"
+                      matInput
+                      formControlName="password"
+                    />
+                    <button
+                      type="button"
+                      mat-icon-button
+                      matSuffix
+                      (click)="hide = !hide"
+                      [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hide"
+                    >
+                      <mat-icon>{{
+                        hide ? "visibility_off" : "visibility"
+                      }}</mat-icon>
+                    </button>
+
+                    <!-- <mat-error *ngIf="signForm.get('password').invalid">{{
+                  getErrorMessage("password")
+                }}</mat-error> -->
+                  </mat-form-field>
+                </div>
+                <div class="col-6">
+                  <mat-form-field
+                    appearance="outline"
+                    autocomplete="off"
+                    style="width: 100%;"
+                  >
+                    <mat-label>Confirm Password</mat-label>
+                    <input
+                      [type]="cnfHide ? 'password' : 'text'"
+                      matInput
+                      placeholder="Confirm Password"
+                      formControlName="confirmPassword"
+                    />
+                    <button
+                      type="button"
+                      mat-icon-button
+                      matSuffix
+                      (click)="cnfHide = !cnfHide"
+                      [attr.aria-label]="'cnfHide confirmPassword'"
+                      [attr.aria-pressed]="cnfHide"
+                    >
+                      <mat-icon>{{
+                        cnfHide ? "visibility_off" : "visibility"
+                      }}</mat-icon>
+                    </button>
+
+                    <!-- <mat-error *ngIf="signForm.get('password').invalid">{{
+                  getErrorMessage("password")
+                }}</mat-error> -->
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <div class="w-100">
+                  <div class="col-12 mb-2">
+                    <span>Corporate Office Address</span>
+                  </div>
+                  <div class="col-12">
+                    <div class="row">
+                      <!-- city -->
+                      <div class="col-6">
+                        <mat-form-field
+                          appearance="outline"
+                          autocomplete="off"
+                          style="width: 100%;"
+                        >
+                          <mat-label>City</mat-label>
+                          <input
+                            matInput
+                            placeholder="City"
+                            formControlName="city"
+                          />
+                          <mat-icon class="set-icon" matSuffix
+                            >location_city</mat-icon
+                          >
+                          <mat-error *ngIf="signForm.get('city').invalid"
+                            >Please fill City</mat-error
+                          >
+                        </mat-form-field>
+                      </div>
+                      <div class="col-6">
+                        <mat-form-field
+                          appearance="outline"
+                          autocomplete="off"
+                          style="width: 100%;"
+                        >
+                          <mat-label>State</mat-label>
+                          <input
+                            matInput
+                            placeholder="State"
+                            formControlName="state"
+                          />
+                          <mat-icon class="set-icon" matSuffix
+                            >location_city</mat-icon
+                          >
+                          <mat-error *ngIf="signForm.get('state').invalid"
+                            >Please fill State</mat-error
+                          >
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <mat-form-field
+                      appearance="outline"
+                      autocomplete="off"
+                      style="width: 100%;"
+                    >
+                      <mat-label>Address</mat-label>
+                      <input
+                        matInput
+                        placeholder="Address"
+                        formControlName="fullAddress"
+                      />
+                      <mat-icon class="set-icon" matSuffix
+                        >location_city</mat-icon
+                      >
+                      <mat-error *ngIf="signForm.get('fullAddress').invalid"
+                        >Please fill Address</mat-error
+                      >
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <div class="col-12 mb-2">
+                  <span>Upload Company Logo</span>
+                </div>
+                <div class="col-12">
+                  <div class="row d-flex">
+                    <div class="col-4">
+                      <input
+                        type="file"
+                        hidden
+                        #companyLogo
+                        (change)="imageChanged()"
+                        accept="image/*"
+                      />
+                      <div class="w-20 h-20">
+                        <div
+                          style="
+                            min-width: 10em !important;
+
+                            min-height: 10em !important;
+                            height: auto;
+                          "
+                        >
+                          <img
+                            class="border"
+                            #showImage
+                            alt="Conpany Logo"
+                            width="150"
+                            height="150"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <span><b> Logo Information</b></span>
+                      <div class="row">
+                        <div class="col-12">
+                          <span><b>Name : </b>{{ ImageInfo.Name }}</span>
+                        </div>
+                        <div class="col-12">
+                          <span
+                            ><b>Image Size:</b>
+                            {{ ImageInfo.ImageSize }} bytes</span
+                          >
+                        </div>
+                        <div class="col-12">
+                          <span
+                            ><b>Modified Date: </b>
+                            {{ ImageInfo.ModifiedDate | date }}</span
+                          >
+                        </div>
+                        <div class="col-12">
+                          <span><b>Image Type: </b>{{ ImageInfo.type }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 mt-2">
+                  <button
+                    type="button"
+                    mat-raised-button
+                    color="primary"
+                    (click)="companyLogo.click()"
+                  >
+                    Choose File
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <div class="col-12 mt-3 mb-2">
+                  <span>Company Description</span>
+                </div>
+                <div class="col-12">
+                  <div class="">
+                    <mat-form-field
+                      appearance="outline"
+                      autocomplete="off"
+                      style="width: 100%;"
+                    >
+                      <mat-label>Company Description</mat-label>
+                      <textarea
+                        matInput
+                        name=""
+                        id=""
+                        cols="30"
+                        rows="10"
+                        class="textarea w-100"
+                        style="border: 0;"
+                        formControlName="companyDescription"
+                      ></textarea>
+                      <!-- <mat-icon class="set-icon" matSuffix
+                        >location_city</mat-icon
+                      > -->
+                      <mat-error
+                        *ngIf="signForm.get('companyDescription').invalid"
+                        >please Fill Description</mat-error
+                      >
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 mt-3">
+              <div class="row">
+                <div class="col-12">
+                  <span>Incorporated In</span>
+                </div>
+                <div class="col-12 mt-2">
+                  <mat-form-field
+                    appearance="outline"
+                    autocomplete="off"
+                    style="width: 100%;"
+                  >
+                    <mat-label>Incorporated In</mat-label>
+                    <input
+                      matInput
+                      placeholder="Incorporated"
+                      formControlName="incorporated"
+                    />
+                    <mat-icon class="set-icon" matSuffix
+                      >corporate_fare</mat-icon
+                    >
+                    <mat-error *ngIf="signForm.get('incorporated').invalid"
+                      >please Fill incorporated</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <div class="col-12">
+                  <span>Current Employee Strength</span>
+                </div>
+                <div class="col-6 mt-2">
+                  <mat-form-field
+                    appearance="outline"
+                    autocomplete="off"
+                    style="width: 100%;"
+                  >
+                    <mat-label>No. of Employee</mat-label>
+                    <input
+                      matInput
+                      placeholder="Ex: 50 - 100"
+                      formControlName="employeeStrength"
+                    />
+                    <mat-icon class="set-icon" matSuffix
+                      >reduce_capacity</mat-icon
+                    >
+                    <mat-error *ngIf="signForm.get('employeeStrength').invalid"
+                      >Please fill Employee Strength</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="col-6 mt-2">
+                  <mat-form-field
+                    appearance="outline"
+                    autocomplete="off"
+                    style="width: 100%;"
+                  >
+                    <mat-label>Funding Received Amount (optional)</mat-label>
+                    <input
+                      matInput
+                      placeholder="Amount"
+                      formControlName="fundingAmount"
+                    />
+                    <mat-icon class="set-icon" matSuffix>attach_money</mat-icon>
+                    <!-- <mat-error *ngIf="signForm.get('password').invalid">{{
+                                getErrorMessage("password")
+                              }}</mat-error> -->
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row mt-3">
+                <div class="col-12">
+                  <button
+                    [disabled]="!signForm.valid ? true : false"
+                    mat-raised-button
+                    color="primary"
+                    style="width: 100%;"
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="row">
+          <div class="col-12"></div>
+        </div>
+      </mat-card>
+    </div>
+  </section>
+</div>
+
+<!-- [disabled]="
+                this.signForm.get('email').hasError('required') ||
+                this.signForm.get('email').hasError('email') ||
+                this.signForm.get('password').hasError('required')
+                  ? true
+                  : false
+              " -->
