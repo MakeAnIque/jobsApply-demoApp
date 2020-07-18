@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 
 import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs/internal/observable/of';
+
 import { throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root',
@@ -55,6 +55,35 @@ export class AllApiRoutesService {
             registration: false,
             message: 'User Already Exists.',
           };
+        }
+      })
+    );
+  }
+
+  public employerPostJob(param: {}): Observable<{}> {
+    return this.http
+      .post(`${this.url}/api/addUpdateJobPostDetails`, param)
+      .pipe(
+        map((elem: any) => {
+          if (elem.status) {
+            return {
+              status: true,
+            };
+          } else {
+            return {
+              status: false,
+            };
+          }
+        })
+      );
+  }
+  public getAllJobPostList(): Observable<{}> {
+    return this.http.get(`${this.url}/api/getAllJobPostDetailsList`).pipe(
+      map((elem: any) => {
+        if (elem.status) {
+          return elem.data.getAllJobPostDetailsList;
+        } else {
+          return 'error';
         }
       })
     );

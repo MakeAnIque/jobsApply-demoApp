@@ -37,7 +37,7 @@
     </mat-card-content> -->
     <div class="row">
       <div class="col-12">
-        <ng-container *ngFor="let item of [1, 2, 3]">
+        <ng-container *ngFor="let item of jobList">
           <mat-card class="my-2">
             <div class="row">
               <div class="col-12">
@@ -45,13 +45,15 @@
                   <div class="col-1">
                     <img
                       style="width: 1em; height: 1em;"
-                      src="https://i.pinimg.com/564x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
+                      [src]="item.imageUrl"
                       alt=""
                       class="w-100 h-100 img"
                     />
                   </div>
-                  <div class="col-1">
-                    <h2 class="mt-3 font-weight-lighter">ASearch</h2>
+                  <div class="col-2">
+                    <h2 class="mt-3 font-weight-lighter">
+                      {{ item.companyName }}
+                    </h2>
                   </div>
                 </div>
 
@@ -60,13 +62,20 @@
                     <hr />
                   </div>
                 </div>
-
+                <div class="row">
+                  <div class="col-1 d-flex align-items-center mr-4">
+                    <span><b>Job Title:</b></span>
+                  </div>
+                  <div class="col-10 d-flex">
+                    <span class="ml-1">{{ item.jobTitle }}</span>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-1 d-flex align-items-center mr-4">
                     <span><b>Requirements:</b></span>
                   </div>
                   <div class="col-10 d-flex">
-                    <span class="ml-1">hello</span>
+                    <span class="ml-1">{{ item.requirements }}</span>
                   </div>
                 </div>
                 <div class="row my-2">
@@ -74,23 +83,17 @@
                     <span><b>Experience:</b></span>
                   </div>
                   <div class="col-10 d-flex">
-                    <span class="ml-1">hello</span>
+                    <span class="ml-1">{{ item.experience }}</span>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-2 d-flex align-items-center mr-4 mb-2">
-                    <span><b>Company Description:</b></span>
+                    <span><b>Job Description:</b></span>
                   </div>
                   <div class="col-12">
                     <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Aliquam nobis saepe ad consectetur suscipit! Consequatur.
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Rem voluptatem odio cupiditate ex accusantium. Voluptatum
-                      earum veritatis, molestiae quaerat dignissimos maxime
-                      dolores laudantium quia quo minus repellendus tempore
-                      magnam tenetur?
+                      {{ item.jobDescription }}
                     </p>
                   </div>
                 </div>
@@ -104,7 +107,7 @@
                     <span><b>Salary:</b></span>
                   </div>
                   <div class="col-10 d-flex">
-                    <span class="ml-1">6l - 7k / Annum</span>
+                    <span class="ml-1">{{ item.salary }}</span>
                   </div>
                 </div>
                 <!-- <div class="row">
@@ -121,10 +124,7 @@
                     <span><b>Address:</b></span>
                   </div>
                   <div class="col-10 d-flex">
-                    <span class="ml-1"
-                      >IIM Lucknow (Noida Campus Incubator), B-1, Sector 62,
-                      Noida, U.P. 201307</span
-                    >
+                    <span class="ml-1">{{ item.Address }}</span>
                   </div>
                 </div>
                 <div class="row">
@@ -138,7 +138,7 @@
                     <button
                       mat-raised-button
                       color="primary"
-                      (click)="viewAndApply()"
+                      (click)="viewAndApply(item.empId, item.jobId)"
                     >
                       Apply Now
                     </button>

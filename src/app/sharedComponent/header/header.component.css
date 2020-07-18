@@ -6,3 +6,8 @@
 
 .nav {
 }
+
+::ng-deep .mat-menu-panel {
+  width: 100vw;
+  padding: 0 10px !important;
+}

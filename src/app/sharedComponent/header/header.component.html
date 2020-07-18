@@ -16,14 +16,68 @@
         <button mat-raised-button (click)="gotoJobList()" color="warn">
           Want Job
         </button>
-        <button
-          mat-raised-button
-          style="margin-left: 4em;"
-          (click)="logout()"
-          color="primary"
-        >
-          {{ loginCheck }}
-        </button>
+        <ng-container *ngIf="!getActive()">
+          <button
+            mat-raised-button
+            style="margin-left: 1em;"
+            (click)="logout()"
+            color="primary"
+          >
+            {{ loginCheck }}
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="getActive()">
+          <img
+            class="ml-2"
+            style="border-radius: 100%;"
+            [src]="getImageUrl()"
+            height="50"
+            width="50"
+            [matMenuTriggerFor]="belowMenu"
+            alt="userCompany Logo"
+          />
+          <mat-menu #belowMenu="matMenu" yPosition="below" xPosition="before">
+            <div class="container">
+              <div class="row">
+                <div
+                  class="col-12 d-flex"
+                  style="justify-content: center; border-radius: 100%;"
+                >
+                  <img
+                    [src]="getImageUrl()"
+                    style="border-radius: 100%;"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-12 d-flex" style="justify-content: center;">
+                  <span style="font-size: 1.2em;">{{ getName() }}</span>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-12 d-flex" style="justify-content: center;">
+                  <span
+                    ><b>{{ getEmail() }}</b></span
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <button
+                    mat-raised-button
+                    style="width: 100%;"
+                    (click)="logout()"
+                    color="primary"
+                  >
+                    {{ loginCheck }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+        </ng-container>
       </div>
     </nav>
   </header>

@@ -4,101 +4,270 @@
     <div class="animate__animated animate__fadeIn">
       <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
       <mat-card class="col-12">
-        <div class="container m-auto py-4">
-          <span class="size">Post job</span>
-          <hr />
-          <form>
-            <span class="size">Job types:</span>
-            <div class="form-check mt-2">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                id="fulltimecheck"
-              />
-              <label for="fulltimecheck" class="form-check-label"
-                >Full time</label
-              >
-            </div>
-            <div class="form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                id="parttimecheck"
-              />
-              <label for="parttimecheck" class="form-check-label"
-                >Part time</label
-              >
-            </div>
-            <div class="form-group my-3">
-              <label for="skillformrequir" class="size">Skill required</label>
-              <input
-                type="text"
-                class="form-control"
-                id="skillformrequir"
-                placeholder="Html, Js, Node, Database..."
-              />
-            </div>
-            <div class="form-group">
-              <label for="textdiscription" class="size">Job discription</label>
-              <textarea
-                name=""
-                id="textdiscription"
-                cols="3"
-                class="form-control"
-              ></textarea>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-4">
-                <label for="expectsalaryform" class="size"
-                  >Expected Salary</label
-                >
-                <input
-                  type="number"
-                  class="form-control"
-                  id="expectedsalaryform"
-                />
-              </div>
-              <div class="form-group col-2">
-                <label for="klformdrop" class="size">K / L</label>
-                <select name="" id="klformdrop" class="form-control">
-                  <option selected>K</option>
-                  <option value="l">L</option>
-                </select>
-              </div>
-              <div class="form-group col-2">
-                <label for="monthyearform" class="size">m / y</label>
-                <select name="" id="monthyearform" class="form-control">
-                  <option selected>per month</option>
-                  <option value="year">per year</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-3">
-                <label for="expreienceform" class="size">Experience</label>
-                <input type="number" class="form-control" placeholder="2 - 3" />
-              </div>
-              <div class="form-group col-2">
-                <label for="monthyearform" class="size">m / y</label>
-                <select name="" id="monthyearform" class="form-control">
-                  <option selected> month</option>
-                  <option value="year"> year</option>
-                </select>
-              </div>
-            </div>
-            <button class="btn btn-primary" type="submit">Apply job</button>
-          </form>
+        <div class="row">
+          <div class="col-12">
+            <h2 class="">POST JOB</h2>
+          </div>
         </div>
-        <!-- <div class="input-group">
-          <div>
-            <span>Job type:</span>
+        <div class="row">
+          <div class="col-12">
+            <hr />
           </div>
-          <div class="custom-check">
-            <div class="">
-              <input type="checkbox" class="custom-input-check">
-            </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <form [formGroup]="postJobGroup" (ngSubmit)="send()">
+              <div class="row">
+                <div class="col-12 mb-2">
+                  <span><b>Job Type</b></span>
+                </div>
+                <div class="col-12">
+                  <mat-radio-group
+                    class="d-flex"
+                    style="flex-direction: column;"
+                    aria-label="Select an option"
+                    formControlName="jobType"
+                  >
+                    <mat-radio-button value="1">Full Time</mat-radio-button>
+                    <mat-radio-button value="2">Internship</mat-radio-button>
+                    <mat-radio-button value="3">Freelancer</mat-radio-button>
+                    <mat-radio-button value="4">Co-Founder</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <span><b>Job Title:</b></span>
+                </div>
+                <div class="col-12">
+                  <mat-form-field appearance="outline" style="width: 20em;">
+                    <mat-label>Job Title</mat-label>
+                    <input matInput required formControlName="jobTitle" />
+                    <mat-error *ngIf="postJobGroup.get('jobTitle').invalid"
+                      >Please Fill Job Title</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <hr />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <span><b>Requirements:</b></span>
+                </div>
+                <div class="col-12 mt-3">
+                  <mat-form-field style="width: 100%;">
+                    <mat-chip-list #chipList aria-label="Fruit selection">
+                      <mat-chip
+                        *ngFor="let fruit of fruits"
+                        [selectable]="selectable"
+                        [removable]="removable"
+                        (removed)="remove(fruit)"
+                      >
+                        {{ fruit }}
+                        <mat-icon matChipRemove *ngIf="removable"
+                          >cancel</mat-icon
+                        >
+                      </mat-chip>
+                      <input
+                        placeholder="New Skills..."
+                        #fruitInput
+                        formControlName="requredSkills"
+                        [matAutocomplete]="auto"
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        (matChipInputTokenEnd)="add($event)"
+                      />
+                    </mat-chip-list>
+                    <mat-autocomplete
+                      #auto="matAutocomplete"
+                      (optionSelected)="selected($event)"
+                    >
+                      <mat-option
+                        *ngFor="let fruit of filteredFruits | async"
+                        [value]="fruit"
+                      >
+                        {{ fruit }}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <mat-error
+                      *ngIf="postJobGroup.get('requredSkills').value === ''"
+                      >Please Enter Skills Required For Requirement.</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <hr />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <mat-form-field appearance="outline" style="width: 20em;">
+                    <mat-label>Your Company Name (Non Editible)</mat-label>
+                    <input
+                      matInput
+                      [disabled]="true"
+                      formControlName="companyName"
+                    />
+                    <!-- <mat-error *ngIf="email.invalid">{{
+                      getErrorMessage()
+                    }}</mat-error> -->
+                  </mat-form-field>
+                </div>
+                <div class="col-4">
+                  <mat-form-field appearance="outline" style="width: 20em;">
+                    <mat-label>Your Email Address (Non Editible)</mat-label>
+                    <input matInput [disabled]="true" formControlName="email" />
+                    <!-- <mat-error *ngIf="email.invalid">{{
+                      getErrorMessage()
+                    }}</mat-error> -->
+                  </mat-form-field>
+                </div>
+                <div class="col-4">
+                  <mat-form-field appearance="outline" style="width: 20em;">
+                    <mat-label>Your Website Url (Non Editible)</mat-label>
+                    <input
+                      matInput
+                      [disabled]="true"
+                      formControlName="websiteUrl"
+                    />
+                    <!-- <mat-error *ngIf="email.invalid">{{
+                      getErrorMessage()
+                    }}</mat-error> -->
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <hr />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <mat-form-field
+                    appearance="outline"
+                    autocomplete="off"
+                    style="width: 100%;"
+                  >
+                    <mat-label>Job Description</mat-label>
+                    <textarea
+                      matInput
+                      name=""
+                      id=""
+                      cols="30"
+                      rows="10"
+                      class="textarea w-100"
+                      style="border: 0;"
+                      formControlName="jobDescription"
+                    ></textarea>
+                    <!-- <mat-icon class="set-icon" matSuffix
+                        >location_city</mat-icon
+                      > -->
+                    <mat-error
+                      *ngIf="postJobGroup.get('jobDescription').invalid"
+                      >please Fill Description</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row d-flex" style="justify-content: space-between;">
+                <div class="col-12 mt-3">
+                  <span><b>Salary:</b></span>
+                </div>
+                <div class="col-4">
+                  <mat-form-field appearance="outline" style="width: 20em;">
+                    <mat-label>Amount</mat-label>
+                    <input
+                      matInput
+                      formControlName="amountSalary"
+                      type="number"
+                    />
+                    <mat-error *ngIf="postJobGroup.get('amountSalary').invalid"
+                      >Please Fill Salary Amount want to Pay and Select type
+                      Paying scheme</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="col-4">
+                  <mat-form-field appearance="outline" style="width: 20em;">
+                    <mat-label>Salary Amount</mat-label>
+                    <mat-select formControlName="moneyType">
+                      <mat-option
+                        required
+                        *ngFor="let salary of ['Thousand', 'Lakh']"
+                        [value]="salary"
+                      >
+                        {{ salary }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Salary Scheme (Time)</mat-label>
+                    <mat-select formControlName="TimeType">
+                      <mat-option
+                        *ngFor="let term of ['Annum', 'Month', 'Hours']"
+                        [value]="term"
+                      >
+                        {{ term }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <hr />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <span><b>Experience:</b></span>
+                </div>
+                <div class="col-3">
+                  <mat-form-field appearance="outline" style="width: 20em;">
+                    <mat-label>Year</mat-label>
+                    <input
+                      matInput
+                      placeholder="Ex: 2"
+                      formControlName="expYear"
+                      type="number"
+                    />
+                    <mat-error *ngIf="postJobGroup.get('expYear').invalid"
+                      >Please Fill How much Experience Required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col-6">
+                  <button mat-raised-button color="primary">
+                    Post Job
+                  </button>
+                </div>
+                <div class="col-6 d-flex" style="justify-content: flex-end;">
+                  <button
+                    type="button"
+                    (click)="resetYourForm()"
+                    mat-raised-button
+                    color="primary"
+                  >
+                    Reset Form
+                  </button>
+                </div>
+              </div>
+              <!-- <button (click)="send()">click</button> -->
+            </form>
           </div>
-        </div> -->
+        </div>
       </mat-card>
     </div>
   </section>

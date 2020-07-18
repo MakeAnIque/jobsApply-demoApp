@@ -84,7 +84,7 @@ export class SignUpComponent implements OnInit {
       companyDescription: new FormControl('', Validators.required),
       incorporated: new FormControl('', Validators.required),
       employeeStrength: new FormControl('', Validators.required),
-      fundingAmount: new FormControl(''),
+      fundingAmount: new FormControl('', Validators.required),
     });
   }
 
@@ -152,19 +152,21 @@ export class SignUpComponent implements OnInit {
     } = this.signForm.value;
 
     this.apiRoute
-      .employerSignup({
-        EMPID: 0,
-        EMPLOYERMAILID: email,
-        EMPLOYERPASSWORD: password,
-        EMPLOYERNAME: companyName,
-        EMPLOYERURL: websiteUrl,
-        EMPLOYERADDRESS: this.combineAddress(this.signForm),
-        EMPLOYERLOGOFILE: '/uplad/my.jpg',
-        EMPLOYERDESCRIPTION: companyDescription,
-        EMPLOYERSTRENGTH: employeeStrength,
-        EMPLOYERYEARINC: incorporated,
-        EMPLOYERFUNDS: fundingAmount,
-      })
+      .employerSignup(
+        this.getFormData({
+          EMPID: 0,
+          EMPLOYERMAILID: email,
+          EMPLOYERPASSWORD: password,
+          EMPLOYERNAME: companyName,
+          EMPLOYERURL: websiteUrl,
+          EMPLOYERADDRESS: this.combineAddress(this.signForm),
+          EMPLOYERLOGOFILE: '',
+          EMPLOYERDESCRIPTION: companyDescription,
+          EMPLOYERSTRENGTH: employeeStrength,
+          EMPLOYERYEARINC: incorporated,
+          EMPLOYERFUNDS: fundingAmount,
+        })
+      )
       .subscribe((signData: { message: string; registration: string }) => {
         if (signData.registration) {
           this.snackBar.open('Registration Done, By ' + companyName, 'close', {
@@ -183,9 +185,25 @@ export class SignUpComponent implements OnInit {
       });
   }
   combineAddress(data: FormGroup): string {
-    const { address, city, state, pincode, country } = this.signForm.value;
+    const { fullAddress, city, state, pincode, country } = this.signForm.value;
 
-    return `${address}, ${pincode}, ${city}, ${state}, ${country}`;
+    return `${fullAddress}, ${pincode}, ${city}, ${state}, ${country}`;
+  }
+
+  getFormData(obj: any): any {
+    if (this.file) {
+      const fd = new FormData();
+
+      Object.keys(obj).forEach((key) => {
+        fd.append(key, obj[key]);
+      });
+
+      fd.append('companyLogo', this.file.nativeElement.files[0]);
+
+      return fd;
+    } else {
+      return obj;
+    }
   }
   ngOnViewInit() {}
   ngOnDestroy() {}
