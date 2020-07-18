@@ -10,6 +10,25 @@ import { environment } from 'src/environments/environment';
 export class HomeComponent implements OnInit, AfterViewInit {
   constructor(private router: Router, private apiRoute: AllApiRoutesService) {}
   jobList;
+  jobType = [
+    {
+      name: 'FULLTIME',
+      id: 1,
+    },
+    {
+      name: 'INTERN',
+      id: 2,
+    },
+    {
+      name: 'FREELANCER',
+      id: 3,
+    },
+    {
+      name: 'CO-FOUNDER',
+      id: 4,
+    },
+  ];
+
   ngOnInit(): void {}
   ngAfterViewInit(): void {
     this.apiRoute.getAllJobPostList().subscribe((data) => {
@@ -41,6 +60,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         Address: elem.LOCATION,
         empId: elem.EMPID,
         jobId: elem.JOBID,
+        jobType: this.jobType.find((accu) => +accu.id === +elem.JOBTYPEID).name,
       });
     });
 
