@@ -23,6 +23,7 @@
     "@angular/router": "~10.0.4",
     "animate.css": "^4.1.0",
     "bootstrap": "^4.5.0",
+    "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="container" style="margin-top: 15vh; margin-bottom: 12vh;">
+  <div class="row">
+    <div class="col-12">
+      <mat-card>
+        <ng-container *ngFor="let item of listOfReceJob">
+          <mat-card class="mb-2">
+            <div class="row">
+              <div class="col-12 my-2">
+                <b>Job Title: </b>{{ item.jobtitle }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12"><b>Fullname: </b> {{ item.Name }}</div>
+            </div>
+            <div class="row">
+              <div class="col-12 my-2"><b>Email: </b>{{ item.email }}</div>
+            </div>
+            <div class="row">
+              <div class="col-12"><b>Contact No.: </b> {{ item.phone }}</div>
+            </div>
+            <div class="row">
+              <div class="col-12 mt-2">
+                <button
+                  type="button"
+                  (click)="downloadCV(item.cvorResume)"
+                  mat-raised-button
+                  color="primary"
+                >
+                  Download CV/Resume
+                </button>
+              </div>
+            </div>
+          </mat-card>
+        </ng-container>
+      </mat-card>
+    </div>
+  </div>
+</div>

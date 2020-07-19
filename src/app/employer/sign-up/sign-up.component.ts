@@ -107,10 +107,10 @@ export class SignUpComponent implements OnInit {
       const fileRef = this.file.nativeElement.files[0];
       const fileObj = await this.signUpService.readImage(fileRef);
       this.companyLogo.nativeElement.src = fileObj;
-      console.log(this.file.nativeElement.files[0]);
+
       this.ImageInfo = {
         Name: fileRef.name,
-        ImageSize: fileRef.size,
+        ImageSize: Math.floor(fileRef.size / 1024) + '',
         ModifiedDate: fileRef.lastModifiedDate,
         type: fileRef.type,
       };

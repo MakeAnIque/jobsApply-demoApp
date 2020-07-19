@@ -1,3 +1,27 @@
-.form-control {
-  background: transparent;
+.card-area {
+  position: absolute;
+  width: 70vw;
+
+  margin: auto;
+}
+.user-logo {
+  font-size: 4em;
+  color: #0099cc;
+}
+
+.login-card {
+  margin-top: 10vh;
+}
+.set-icon {
+  opacity: 0.4;
+}
+mat-form-field:hover {
+  outline: none !important;
+  border: 0 !important;
+}
+
+.vl {
+  border-left: 1px solid grey;
+  height: 100%;
+  opacity: 0.4;
 }

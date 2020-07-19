@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import {
   FormControl,
@@ -18,6 +19,8 @@ import {
 import { startWith } from 'rxjs/internal/operators/startWith';
 import { map } from 'rxjs/internal/operators/map';
 import { AllApiRoutesService } from '../../all-api-routes.service';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-post-jobs',
   templateUrl: './post-jobs.component.html',
@@ -44,6 +47,9 @@ export class PostJobsComponent implements OnInit {
   ];
   postJobGroup: FormGroup;
   loading: boolean = false;
+
+  listOfReceJob = [];
+  noPosted: any = 0;
 
   constructor(
     private router: Router,
@@ -73,7 +79,7 @@ export class PostJobsComponent implements OnInit {
       EMPLOYERURL,
       EMPLOYERNAME,
     } = this.authService.demoTest.data[0];
-
+    this.getPostedListFromCandidate(EMPID);
     this.postJobGroup.patchValue({
       email: EMPLOYERMAILID,
       websiteUrl: EMPLOYERURL,
@@ -182,6 +188,7 @@ export class PostJobsComponent implements OnInit {
         horizontalPosition: 'end',
         verticalPosition: 'top',
       });
+      return;
     }
     const skillsName = this.getSkillsRequired(this.fruits);
     const {
@@ -242,12 +249,26 @@ export class PostJobsComponent implements OnInit {
 
     return `${year}/${month}/${date}`;
   }
+
   getSkillsRequired(list: Array<string>): string {
     if (list.length === 0) {
       return '';
     }
     return this.postJobGroup.value.jobTitle + '~' + list.join(',');
   }
+  getPostedListFromCandidate(empid) {
+    this.apiRoute.getEmployerRecJobS({ EMPID: empid }).subscribe((res: any) => {
+      if (!res) {
+        this.noPosted = 0;
+      } else {
+        this.noPosted = res.data.length;
+      }
+    });
+  }
+  refToSeeJobs() {
+    this.router.navigate(['receivejobs']);
+  }
+
   ngOnViewInit() {}
   ngOnDestroy() {}
 }

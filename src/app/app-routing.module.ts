@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './employer/sign-up/sign-up.component';
 import { ViewJobComponent } from './view-job/view-job.component';
+import { ShowJobsReceivedComponent } from './show-jobs-received/show-jobs-received.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -25,8 +26,13 @@ const routes: Routes = [
     canActivate: [AuthService],
   },
   {
-    path: 'viewjobs',
+    path: 'viewjobs/:empid/:jobid',
     component: ViewJobComponent,
+  },
+  {
+    path: 'receivejobs',
+    component: ShowJobsReceivedComponent,
+    canActivate: [AuthService],
   },
   {
     path: '**',

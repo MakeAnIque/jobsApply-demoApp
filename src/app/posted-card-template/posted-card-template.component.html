@@ -1,1 +1,159 @@
-<p>posted-card-template works! {{ byU }}</p>
+<div class="row">
+  <div class="col-12">
+    <div class="row align-items-center">
+      <div class="col-1">
+        <img
+          style="width: 1em; height: 1em;"
+          [src]="modifyImage(item.imageUrl)"
+          alt=""
+          class="w-100 h-100 img"
+        />
+      </div>
+      <div class="col-2">
+        <h2 class="mt-3 font-weight-lighter">
+          {{ item.companyName }}
+        </h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <hr />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1 d-flex align-items-center mr-4">
+        <span><b>Job Title:</b></span>
+      </div>
+      <div class="col-10 d-flex">
+        <span class="ml-1">{{ item.jobTitle }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1 d-flex align-items-center mr-4">
+        <span><b>Job Type:</b></span>
+      </div>
+      <div class="col-10 d-flex">
+        <span class="ml-1">{{ item.jobType }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-1 d-flex align-items-center mr-4">
+        <span><b>Requirements:</b></span>
+      </div>
+      <div class="col-10 d-flex">
+        <span class="ml-1">{{ item.requirements }}</span>
+      </div>
+    </div>
+    <div class="row my-2">
+      <div class="col-1 d-flex align-items-center mr-4">
+        <span><b>Experience:</b></span>
+      </div>
+      <div class="col-10 d-flex">
+        <span class="ml-1">{{ item.experience }}</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2 d-flex align-items-center mr-4 mb-2">
+        <span><b>Job Description:</b></span>
+      </div>
+      <div class="col-12">
+        <p>
+          {{ item.jobDescription }}
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <hr />
+      </div>
+    </div>
+    <ng-container *ngIf="showOtherInfo">
+      <div class="row">
+        <div class="col-2 d-flex align-items-center mr-4 mb-2">
+          <span><b>Company Description:</b></span>
+        </div>
+        <div class="col-12">
+          <p>
+            {{ item.companyDescription }}
+          </p>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-1 d-flex align-items-center mr-4">
+          <span><b>Employee Strength:</b></span>
+        </div>
+        <div class="col-10 d-flex">
+          <span class="ml-1">{{ item.companyEmpStrength }}</span>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-1 d-flex align-items-center mr-4">
+          <span><b>Company Url:</b></span>
+        </div>
+        <div class="col-10 d-flex">
+          <a href="{{ item.empUrl }}" target="_blank">{{ item.companyName }}</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <hr />
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="row my-2">
+      <div class="col-1 d-flex align-items-center mr-4">
+        <span><b>Salary:</b></span>
+      </div>
+      <div class="col-10 d-flex">
+        <span class="ml-1">{{ item.salary }}</span>
+      </div>
+    </div>
+    <!-- <div class="row">
+        <div class="col-1">
+          <i class="fa fa-desktop mr-2"></i>
+          <span><b>Requirements:</b></span>
+        </div>
+        <div class="col-2">
+          <span>Node, Js, DS, Man.</span>
+        </div>
+      </div> -->
+    <div class="row my-2">
+      <div class="col-1 d-flex align-items-center mr-4">
+        <span><b>Address:</b></span>
+      </div>
+      <div class="col-10 d-flex">
+        <span class="ml-1">{{ item.Address }}</span>
+      </div>
+    </div>
+    <!-- postedDate -->
+    <div class="row my-2">
+      <div class="col-1 d-flex align-items-center mr-4">
+        <span><b>Date:</b></span>
+      </div>
+      <div class="col-10 d-flex">
+        <span class="ml-1">{{ item.postedDate | date }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <hr />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 d-flex" style="justify-content: flex-end;">
+        <!-- view and apply pass id of jobs id -->
+        <button
+          *ngIf="showButton"
+          mat-raised-button
+          color="primary"
+          (click)="sendMessage(item.empId, item.jobId)"
+        >
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

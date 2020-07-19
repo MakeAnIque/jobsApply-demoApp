@@ -59,6 +59,7 @@ import { ViewJobComponent } from './view-job/view-job.component';
 import { HeaderComponent } from './sharedComponent/header/header.component';
 import { FooterComponent } from './sharedComponent/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ShowJobsReceivedComponent } from './show-jobs-received/show-jobs-received.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +71,7 @@ import { HttpClientModule } from '@angular/common/http';
     ViewJobComponent,
     HeaderComponent,
     FooterComponent,
+    ShowJobsReceivedComponent,
   ],
   imports: [
     FormsModule,

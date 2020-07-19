@@ -88,4 +88,65 @@ export class AllApiRoutesService {
       })
     );
   }
+
+  public getJobPostedDetailTOVIew(param: {}): Observable<{}> {
+    return this.http.post(`${this.url}/api/getJobPostDetails`, param).pipe(
+      map((elem: any) => {
+        console.log(elem);
+        if (elem.data.getJobPostDetails.length) {
+          return elem.data.getJobPostDetails;
+        } else {
+          return false;
+        }
+      })
+    );
+  }
+
+  public postCandidateJobDetails(param): Observable<any> {
+    return this.http
+      .post(`${this.url}/api/addUpdateCandidateDetails`, param)
+      .pipe(
+        map((elem: any) => {
+          if (!elem.status) {
+            return {
+              status: false,
+            };
+          }
+          if (elem.type === -1) {
+            return {
+              status: true,
+              already: true,
+            };
+          } else {
+            return {
+              status: true,
+              already: false,
+            };
+          }
+        })
+      );
+  }
+  public getEmployerRecJobS(param): Observable<{}> {
+    return this.http
+      .post(`${this.url}/api/getCandidateDetailsByCandidateId`, param)
+      .pipe(
+        map((elem: any) => {
+          if (elem.data.getCandidateDetailsByCandidateId.length == 0) {
+            return {
+              status: true,
+              data: false,
+            };
+          } else {
+            return {
+              status: true,
+              data: elem.data.getCandidateDetailsByCandidateId,
+            };
+          }
+        })
+      );
+  }
+
+  // public downloadFile(url) {
+  //   return this.http.down(url);
+  // }
 }

@@ -35,15 +35,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.jobList = this.modifyDetails(data);
     });
   }
-  viewAndApply(empId, jobId) {
-    this.router.navigate(['/viewjobs'], { queryParams: { id: 'hello' } });
+  receiveMessage($event) {
+    console.log('comming');
+    this.router.navigate(['/viewjobs', $event.empid, $event.jobid]);
   }
 
   modifyDetails(data) {
     let temp = [];
     data.forEach((elem) => {
       temp.push({
-        postedDate: this.modifyDate(elem.JOBPOSTDATE),
+        postedDate: elem.JOBPOSTDATE,
         imageUrl: environment.origin + '/uploadFIle/' + elem.EMPLOYERLOGOFILE,
         companyName: elem.INDUSTRY,
         jobTitle: elem.JOBTITLE.split('~')[0],
