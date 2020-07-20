@@ -10,7 +10,7 @@
 }
 
 .login-card {
-  margin-top: 10vh;
+  margin-top: 13vh;
 }
 .set-icon {
   opacity: 0.4;
@@ -24,8 +24,4 @@ mat-form-field:hover {
   border-left: 1px solid grey;
   height: 100%;
   opacity: 0.4;
-}
-
-.size {
-  font-size: ;
 }
