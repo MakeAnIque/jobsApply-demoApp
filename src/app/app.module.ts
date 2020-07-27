@@ -60,6 +60,9 @@ import { HeaderComponent } from './sharedComponent/header/header.component';
 import { FooterComponent } from './sharedComponent/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowJobsReceivedComponent } from './show-jobs-received/show-jobs-received.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { WantJobComponent } from './want-job/want-job.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +75,9 @@ import { ShowJobsReceivedComponent } from './show-jobs-received/show-jobs-receiv
     HeaderComponent,
     FooterComponent,
     ShowJobsReceivedComponent,
+    ContactUsComponent,
+    AboutUsComponent,
+    WantJobComponent,
   ],
   imports: [
     FormsModule,

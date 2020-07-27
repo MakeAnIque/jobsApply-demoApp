@@ -27,4 +27,16 @@ export class PostedCardTemplateComponent implements OnInit {
       return imageUrl;
     }
   }
+  visit(url) {
+    let http = /http(s)?/g;
+
+    if (!url.match(http)) {
+      url = 'https://' + url;
+    }
+    // window.open(
+    //   url,
+    //   '_blank' // <- This is what makes it open in a new window.
+    // );
+    return url;
+  }
 }

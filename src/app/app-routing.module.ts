@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './employer/sign-up/sign-up.component';
 import { ViewJobComponent } from './view-job/view-job.component';
 import { ShowJobsReceivedComponent } from './show-jobs-received/show-jobs-received.component';
+import { WantJobComponent } from './want-job/want-job.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -34,6 +36,15 @@ const routes: Routes = [
     component: ShowJobsReceivedComponent,
     canActivate: [AuthService],
   },
+  {
+    path: 'wantjob',
+    component: WantJobComponent,
+  },
+  {
+    path: 'contactUs',
+    component: ContactUsComponent,
+  },
+
   {
     path: '**',
     redirectTo: 'login',

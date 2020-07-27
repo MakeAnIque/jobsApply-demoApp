@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  origin: 'http://127.0.0.1:3000',
+  origin: 'http://3.129.118.20:3000',
 };
