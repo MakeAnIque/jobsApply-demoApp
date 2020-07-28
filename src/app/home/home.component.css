@@ -5,3 +5,79 @@
 .img {
   border-radius: 100%;
 }
+
+.heartbg {
+  background-color: #ffccbc;
+  color: rgb(255, 72, 0);
+}
+
+.hover:hover .heartbg {
+  background-color: rgb(255, 38, 0);
+  color: white;
+}
+
+.opacity {
+  opacity: 0.3;
+}
+
+.colorg {
+  font-size: 7rem;
+  color: rgb(255, 60, 0);
+}
+
+.font-size {
+  font-size: 2rem;
+}
+
+.img1 {
+  height: 3rem;
+  width: 3rem;
+  background: lemonchiffon;
+}
+.font-size2 {
+  font-size: 1.2rem;
+}
+.lightcolor {
+  color: rgb(186, 187, 187);
+}
+
+.imgsize3 {
+  height: 10rem;
+  width: 10rem;
+  border: 1px solid black;
+  border-radius: 100%;
+  background-color: blueviolet;
+}
+
+.quote {
+  position: relative;
+  top: 6rem;
+  border-radius: 100%;
+  padding: 1rem 1rem;
+  background-color: white;
+  color: #ffab91;
+  font-size: 2rem;
+}
+
+.textlight {
+  color: rgb(202, 203, 203);
+  font-size: 1em;
+  text-decoration: none;
+}
+
+.textlight:hover {
+  color: rgb(191, 191, 191);
+}
+.texthover {
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.texthover:hover {
+  color: #4285f4;
+}
+/* .hover:hover .heartbg i {
+  color: red;
+  opacity: 1;
+  z-index: 10;
+} */
