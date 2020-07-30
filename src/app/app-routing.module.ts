@@ -10,6 +10,7 @@ import { ShowJobsReceivedComponent } from './show-jobs-received/show-jobs-receiv
 import { WantJobComponent } from './want-job/want-job.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { ServicesComponent } from './services/services.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -48,6 +49,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutUsComponent,
+  },
+  {
+    path: 'services',
+    component: ServicesComponent,
   },
   {
     path: '**',
