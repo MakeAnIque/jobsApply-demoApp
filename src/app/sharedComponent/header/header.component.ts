@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/postjobs']);
   }
   gotoJobList(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/wantjob']);
   }
   logout(): void {
     if (this.authService.isLoggedIn) {

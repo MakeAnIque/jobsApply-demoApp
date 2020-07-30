@@ -1,0 +1,9 @@
+.heartbg {
+  background-color: #ffccbc;
+  color: rgb(255, 72, 0);
+}
+
+.hover:hover .heartbg {
+  background-color: rgb(255, 38, 0);
+  color: white;
+}

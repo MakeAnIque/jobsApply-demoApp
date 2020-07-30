@@ -42,7 +42,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   modifyDetails(data) {
     let temp = [];
-    data.forEach((elem) => {
+    data.forEach((elem, index) => {
+      if (index > 7) {
+        return;
+      }
       temp.push({
         postedDate: elem.JOBPOSTDATE,
         imageUrl: environment.origin + '/uploadFIle/' + elem.EMPLOYERLOGOFILE,
@@ -61,6 +64,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
         Address: elem.LOCATION,
         empId: elem.EMPID,
         jobId: elem.JOBID,
+        jobTypeId: +elem.JOBTYPEID,
+        empUrl: elem.EMPLOYERURL,
         jobType: this.jobType.find((accu) => +accu.id === +elem.JOBTYPEID).name,
       });
     });

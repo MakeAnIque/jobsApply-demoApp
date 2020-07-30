@@ -64,6 +64,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { WantJobComponent } from './want-job/want-job.component';
 import { SubcriberNewsLetterComponent } from './subcriber-news-letter/subcriber-news-letter.component';
+import { HomejobshowComponent } from './homejobshow/homejobshow.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +81,7 @@ import { SubcriberNewsLetterComponent } from './subcriber-news-letter/subcriber-
     AboutUsComponent,
     WantJobComponent,
     SubcriberNewsLetterComponent,
+    HomejobshowComponent,
   ],
   imports: [
     FormsModule,

@@ -2,16 +2,32 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-posted-card-template',
-  templateUrl: './posted-card-template.component.html',
-  styleUrls: ['./posted-card-template.component.css'],
+  selector: 'app-homejobshow',
+  templateUrl: './homejobshow.component.html',
+  styleUrls: ['./homejobshow.component.css'],
 })
-export class PostedCardTemplateComponent implements OnInit {
+export class HomejobshowComponent implements OnInit {
+  jobType = [
+    {
+      name: 'FULLTIME',
+      id: 1,
+    },
+    {
+      name: 'INTERN',
+      id: 2,
+    },
+    {
+      name: 'FREELANCER',
+      id: 3,
+    },
+    {
+      name: 'CO-FOUNDER',
+      id: 4,
+    },
+  ];
   @Input() item: any;
-  @Input() showButton: boolean;
+
   @Output() viewAndApply = new EventEmitter<{ empid: string; jobid: string }>();
-  @Input() showOtherInfo: boolean;
-  @Input() showMoreOption: boolean = true;
 
   constructor() {}
 
@@ -30,6 +46,7 @@ export class PostedCardTemplateComponent implements OnInit {
     }
   }
   visit(url) {
+    console.log(url);
     let http = /http(s)?/g;
 
     if (!url.match(http)) {

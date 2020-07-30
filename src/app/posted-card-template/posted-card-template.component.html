@@ -106,14 +106,6 @@
       </div>
     </ng-container>
 
-    <div class="row my-2">
-      <div class="col-1 d-flex align-items-center mr-4">
-        <span><b>Salary:</b></span>
-      </div>
-      <div class="col-10 d-flex">
-        <span class="ml-1">{{ item.salary }}</span>
-      </div>
-    </div>
     <!-- <div class="row">
         <div class="col-1">
           <i class="fa fa-desktop mr-2"></i>
@@ -123,26 +115,44 @@
           <span>Node, Js, DS, Man.</span>
         </div>
       </div> -->
-    <div class="row my-2">
+    <ng-container *ngIf="showMoreOption">
+      <div class="row my-2">
+        <div class="col-1 d-flex align-items-center mr-4">
+          <span><b>Salary:</b></span>
+        </div>
+        <div class="col-10 d-flex">
+          <span class="ml-1">{{ item.salary }}</span>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-1 d-flex align-items-center mr-4">
+          <span><b>Address:</b></span>
+        </div>
+        <div class="col-10 d-flex">
+          <span class="ml-1">{{ item.Address }}</span>
+        </div>
+      </div>
+      <!-- postedDate -->
+      <div class="row my-2">
+        <div class="col-1 d-flex align-items-center mr-4">
+          <span><b>Date:</b></span>
+        </div>
+        <div class="col-10 d-flex">
+          <span class="ml-1">{{ item.postedDate | date }}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <hr />
+        </div>
+      </div>
+    </ng-container>
+    <div class="row my-2" *ngIf="!showMoreOption">
       <div class="col-1 d-flex align-items-center mr-4">
         <span><b>Address:</b></span>
       </div>
       <div class="col-10 d-flex">
         <span class="ml-1">{{ item.Address }}</span>
-      </div>
-    </div>
-    <!-- postedDate -->
-    <div class="row my-2">
-      <div class="col-1 d-flex align-items-center mr-4">
-        <span><b>Date:</b></span>
-      </div>
-      <div class="col-10 d-flex">
-        <span class="ml-1">{{ item.postedDate | date }}</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <hr />
       </div>
     </div>
     <div class="row">

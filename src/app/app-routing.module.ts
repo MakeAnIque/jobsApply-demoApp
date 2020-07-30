@@ -9,6 +9,7 @@ import { ViewJobComponent } from './view-job/view-job.component';
 import { ShowJobsReceivedComponent } from './show-jobs-received/show-jobs-received.component';
 import { WantJobComponent } from './want-job/want-job.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -41,10 +42,13 @@ const routes: Routes = [
     component: WantJobComponent,
   },
   {
-    path: 'contactUs',
+    path: 'contact',
     component: ContactUsComponent,
   },
-
+  {
+    path: 'about',
+    component: AboutUsComponent,
+  },
   {
     path: '**',
     redirectTo: 'login',
