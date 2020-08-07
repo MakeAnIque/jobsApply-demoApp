@@ -103,6 +103,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   setData(data) {
     this.authService.demoTest = data;
+    window.localStorage.setItem('_start_det', JSON.stringify(data));
+    window.localStorage.setItem('_start_token', data.token);
   }
   gotToSignUp() {
     this.router.navigate(['/signup']);

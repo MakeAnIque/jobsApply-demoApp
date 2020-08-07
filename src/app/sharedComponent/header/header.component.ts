@@ -32,6 +32,8 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     if (this.authService.isLoggedIn) {
       this.authService.isLoggedIn = false;
+      window.localStorage.removeItem('_start_det');
+      window.localStorage.removeItem('_start_token');
       this.loginCheck = 'Log In';
       this.router.navigate(['/']);
       this.snackBar.open('Logout successfully', 'close', {
