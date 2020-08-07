@@ -12,7 +12,16 @@ import {
 export class AuthService {
   isLoggedIn: boolean = false;
   tryingUrl;
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    const userDetail = window.localStorage.getItem('_start_det');
+    const userToken = window.localStorage.getItem('_start_token');
+    if (userToken) {
+      this.isLoggedIn = true;
+    }
+    if (userDetail) {
+      this.demoTest = JSON.parse(userDetail);
+    }
+  }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

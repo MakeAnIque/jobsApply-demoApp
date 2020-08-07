@@ -73,17 +73,19 @@ export class PostJobsComponent implements OnInit {
       );
   }
   ngOnInit() {
-    const {
-      EMPLOYERMAILID,
-      EMPID,
-      EMPLOYERURL,
-      EMPLOYERNAME,
-    } = this.authService.demoTest.data[0];
-    this.getPostedListFromCandidate(EMPID);
-    this.postJobGroup.patchValue({
-      email: EMPLOYERMAILID,
-      websiteUrl: EMPLOYERURL,
-      companyName: EMPLOYERNAME,
+    this.apiRoute.getCheckLogin().subscribe((elemCheck) => {
+      const {
+        EMPLOYERMAILID,
+        EMPID,
+        EMPLOYERURL,
+        EMPLOYERNAME,
+      } = this.authService.demoTest.data[0];
+      this.getPostedListFromCandidate(EMPID);
+      this.postJobGroup.patchValue({
+        email: EMPLOYERMAILID,
+        websiteUrl: EMPLOYERURL,
+        companyName: EMPLOYERNAME,
+      });
     });
   }
   initForm() {

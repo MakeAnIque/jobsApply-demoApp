@@ -58,7 +58,7 @@ import { HomeComponent } from './home/home.component';
 import { ViewJobComponent } from './view-job/view-job.component';
 import { HeaderComponent } from './sharedComponent/header/header.component';
 import { FooterComponent } from './sharedComponent/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ShowJobsReceivedComponent } from './show-jobs-received/show-jobs-received.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -66,6 +66,7 @@ import { WantJobComponent } from './want-job/want-job.component';
 import { SubcriberNewsLetterComponent } from './subcriber-news-letter/subcriber-news-letter.component';
 import { HomejobshowComponent } from './homejobshow/homejobshow.component';
 import { ServicesComponent } from './services/services.component';
+import { I1 } from './helpers/interceptors';
 @NgModule({
   declarations: [
     AppComponent,
