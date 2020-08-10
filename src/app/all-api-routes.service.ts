@@ -24,7 +24,6 @@ export class AllApiRoutesService {
   ) {
     this.url = environment.origin;
     this.headers = new HttpHeaders({
-      'Content-Type': 'application/json',
       Authorization: window.localStorage.getItem('_start_token'),
     });
   }
@@ -41,7 +40,6 @@ export class AllApiRoutesService {
     console.log(t);
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
         Authorization: t || '',
       }),
     };
@@ -70,7 +68,6 @@ export class AllApiRoutesService {
     console.log(t);
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
         Authorization: t || '',
       }),
     };
@@ -101,7 +98,6 @@ export class AllApiRoutesService {
     console.log(t);
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
         Authorization: t || '',
       }),
     };
@@ -129,7 +125,6 @@ export class AllApiRoutesService {
     console.log(t);
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
         Authorization: t || '',
       }),
     };
@@ -151,7 +146,6 @@ export class AllApiRoutesService {
     console.log(t);
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
         Authorization: t || '',
       }),
     };
@@ -205,10 +199,10 @@ export class AllApiRoutesService {
     console.log(t);
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
         Authorization: t || '',
       }),
     };
+    // hello
     return this.http
       .post(
         `${this.url}/api/getCandidateDetailsByCandidateId`,
@@ -237,7 +231,6 @@ export class AllApiRoutesService {
     console.log(t);
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
         Authorization: t || '',
       }),
     };
